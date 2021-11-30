@@ -36,6 +36,14 @@ const blueVagas = [
     }
 ]
 
+
+//CORS - permite a troca de recursos entre origens diferentes
+app.all('/*', (req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "*");
+    next();
+})
+
 // JSON - Javascript Object Notation
 // falo pro express trabalhar com middleware de json para trabalharmos com o formato JSON.
 app.use(express.json());
@@ -65,7 +73,6 @@ app.get('/vagas/:id', (req, res) => {
     // envio para o front-end a vaga que encontrei
     res.send(vagaEcontrada);
 })
-
 
 
 // Definir a porta que o meu backend irá executar
