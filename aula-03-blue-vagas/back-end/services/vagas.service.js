@@ -47,8 +47,48 @@ const addVaga = (newVaga) => {
     return newVaga;
 }
 
+// ela vai procurar um objeto de acordo com o seu id e trocar os seus valores
+const putVaga = (idParam, vagaEdit) => {
+    // // criamos o campo id dentro do objeto para ser substituido
+    // vagaEdit['id'] = parseInt(id);
+    // const index = id - 1;
+    // // busco o item na lista de acordo com o seu index
+    // blueVagas[index] = vagaEdit;
+    // return vagaEdit;
+
+    // busco o indice da vaga que ele acha com o id que estou passando
+    const index = blueVagas.findIndex((vaga) => vaga.id == idParam);
+
+    // verifico se ele realmente encontrou um indice valido na lista
+    if(index >= 0) {
+        // SPREAD OPERATOR ...
+        //faz um espelho da vaga na lista e um espelho da vaga editada e junta as duas trocando apenas o que é necessario.
+        blueVagas[index] = {
+            ...blueVagas[index],
+            ...vagaEdit
+        }
+        
+        // retornamos um booleano true para o contoller poder saber que a edicao foi feita com sucesso;
+        return true
+    } else {
+        // retornamos um booleano false para o contoller poder saber que a edicao teve um erro.
+        return false
+    }
+}
+
+const deleteVaga = (idParam) => {
+    const index = blueVagas.findIndex((vaga) => vaga.id == idParam)
+    // startnumber = qual a posicao que deve ser iniciada a exclusao 
+    // deleteCount = quantidade de items para ser excluido
+    const vagaExcluida = blueVagas[index];
+    blueVagas.splice(index, 1)
+    return vagaExcluida;
+}
+
 module.exports = {
     getVagasService,
     getVagasByIdService,
-    addVaga
+    addVaga,
+    putVaga,
+    deleteVaga
 }
