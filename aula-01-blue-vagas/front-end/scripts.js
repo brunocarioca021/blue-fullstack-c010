@@ -20,7 +20,6 @@ const getVagas = async () => {
     // })
     const response = await fetch(`${apiUrl}/vagas`);
     const vagas = await response.json();
-
     vagas.map((vaga) => {
         console.log(vaga.empresa);
         lista.insertAdjacentHTML('beforeend', `

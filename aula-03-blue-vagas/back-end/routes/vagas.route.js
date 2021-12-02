@@ -14,6 +14,9 @@ router.get('/', vagasController.getVagas)
 // GET /vagas/{id} = retorna uma vaga de acordo com o seu id
 router.get('/:id', vagasController.getVagasById)
 
+// POST /vagas/add = Adiciona uma nova vaga na nossa lista de acordo com o objeto recebido pelo front
+router.post('/add', vagasController.postVaga)
+
 
 // exporto as rotas para serem ultilizadas no index
 module.exports = router;

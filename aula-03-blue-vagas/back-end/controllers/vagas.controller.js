@@ -16,8 +16,19 @@ const getVagasById = (req, res) => {
     res.send(vaga)
 }
 
+// vai cadastrar uma nova vaga de acordo com o obj vindo do front
+const postVaga = (req, res) => {
+    // pegamos o objeto da requisicao para ser cadastro
+    const vaga = req.body;
+    console.log(req.body);
+    // estou enviando a vaga que recebi via corpo da requisicao para o servico adicionar na lista
+    const newVaga = vagasService.addVaga(vaga);
+    res.send({message: `Vaga ${ newVaga.oportunidade } na empresa ${ newVaga.empresa }cadastrada com sucesso`})
+}
+
 // exportando as funcoes para serem usadas nas rotas
 module.exports = {
     getVagas,
-    getVagasById
+    getVagasById,
+    postVaga
 }

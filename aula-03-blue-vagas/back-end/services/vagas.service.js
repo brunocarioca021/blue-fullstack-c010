@@ -37,7 +37,18 @@ const getVagasByIdService = (idParam) => {
     return blueVagas.find((vaga) => vaga.id == idParam)
 }
 
+// cadastra uma nova vaga(obj) na lista blueVagas
+const addVaga = (newVaga) => {
+    // monto um id falso para a minha nova vaga
+    const newId = blueVagas.length + 1;
+    newVaga.id = newId;
+    // adiciono essa nova vaga no array
+    blueVagas.push(newVaga);
+    return newVaga;
+}
+
 module.exports = {
     getVagasService,
-    getVagasByIdService
+    getVagasByIdService,
+    addVaga
 }
