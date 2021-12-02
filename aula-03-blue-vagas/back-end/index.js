@@ -5,6 +5,10 @@ const express = require('express');
 // inicilizar o express no nosso arquivo javascript para que ele possa assumir as funcoes do servidor
 const app = express();
 
+// JSON - Javascript Object Notation
+// falo pro express trabalhar com middleware de json para trabalharmos com o formato JSON.
+app.use(express.json());
+
 //importo o arquivo de rotas
 
 const vagasRouter = require('./routes/vagas.route');
@@ -19,9 +23,7 @@ app.all('/*', (req, res, next) => {
     next();
 })
 
-// JSON - Javascript Object Notation
-// falo pro express trabalhar com middleware de json para trabalharmos com o formato JSON.
-app.use(express.json());
+
 
 // Definir a porta que o meu backend irá executar
 const port = 3000;
