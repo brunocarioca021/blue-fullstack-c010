@@ -25,7 +25,7 @@ const getVagas = async () => {
         console.log(vaga.empresa);
         lista.insertAdjacentHTML('beforeend', `
             <tr>
-                <td>${vaga.id}</td>
+                <th scope="row">${vaga.id}</th>
                 <td>${vaga.empresa}</td>
                 <td>${vaga.oportunidade}</td>
                 <td>${vaga.tipo}</td>
@@ -50,7 +50,7 @@ const escolherVaga = async () => {
     // mapeando a tabela do html e inserindo uma vaga dentro
     document.getElementById('vaga').insertAdjacentHTML('beforeend', `
         <tr>
-            <td>${vaga.id}</td>
+            <th scope="row">${vaga.id}</th>
             <td>${vaga.empresa}</td>
             <td>${vaga.oportunidade}</td>
             <td>${vaga.tipo}</td>
