@@ -1,5 +1,7 @@
 // salvar a url do backend em uma variavel para ser ultiliza depois na hora da chamada da api
 const apiUrl = "http://localhost:3000";
+let modoEdicao = false;
+let idEdicao = 0;
 
 // estou mapeando o elemento lista (<table></table>) do html.
 const lista = document.getElementById("lista");
@@ -31,6 +33,10 @@ const getVagas = async () => {
                 <td>${vaga.oportunidade}</td>
                 <td>${vaga.tipo}</td>
                 <td>${vaga.salario}</td>
+                <td>
+                    <button class="btn btn-primary" onclick="editaVaga(${vaga.id})">Editar</button>
+                    <button class="btn btn-danger">Deletar</button>
+                </td>
             </tr>
         `
     );
@@ -62,15 +68,16 @@ const escolherVaga = async () => {
   );
 };
 
-// [POST] que vai enviar os dados do front-end para o backend.
-const postVaga = async () => {
-    // mapear os inputs com os dados que o usuario digitou
+// Ele mapeia os dados do formulario que o usuario digitou e envia o objeto criado para a sua funcao responsavel (seja edicao ou cadastro)
+const submitForm = async () => {
+    // mapear os inputs com os dados que o usuario digitou idependente se é edicao ou cadastro
     const empresa = document.getElementById('empresa').value;
     const oportunidade = document.getElementById('oportunidade').value;
     const tipo = document.getElementById('tipo').value;
     const salario = document.getElementById('salario').value;
     console.log(empresa, oportunidade, tipo, salario);
 
+    // monta o objeto para ser enviado para o backend
     const vaga = {
         empresa,
         oportunidade,
@@ -80,8 +87,19 @@ const postVaga = async () => {
     console.log(vaga);
 
     // JSON Stringfy = transforma um objeto/array js em um JSON string
-
+    if(modoEdicao) {
+        putVaga(vaga);
+    }else {
+        postVaga(vaga);
+    }
     // faz a chamada para a api com algumas configuracoes****
+    lista.innerHTML = '';
+    getVagas();
+    limpaCampos();
+}
+
+// [POST] http://localhost:3000/vagas/add - Recebe o objeto transforma em JSON e envia para a api atraves do metodo post
+const postVaga = async (vaga) => {
     const response = await fetch(`${apiUrl}/vagas/add`, {
         method: 'POST',
         headers: {
@@ -91,13 +109,52 @@ const postVaga = async () => {
     })
     const data = await response.json();
     alert(data.message);
+}
 
-    lista.innerHTML = '';
-    getVagas();
-    limpaCampos();
+// [PUT] http://localhost:3000/vagas/edit/{id} - recebe o objeto transforma em json e envia para a api juntamente com o seu id para que possa
+// ser editado
+const putVaga = async (vaga) => {
+    const response = await fetch(`${apiUrl}/vagas/edit/${idEdicao}`, {
+        method: 'PUT',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(vaga)
+    })
+    const data = await response.json();
+    alert(data.message);
+}
+
+// preenche os dados do formulario de acordo com a vaga encontrada no backend pelo seu id
+const editaVaga = async (id) => {
+    modoEdicao = true;
+    idEdicao = id;
+
+    // iremos receber o id e atraves do id fazer uma chamdada para a api para buscar os dados de uma vaga por id
+    const vaga = await getById(id);
+
+    // iremos popular os inputs com os valores recebidos da chamada
+    document.getElementById('empresa').value = vaga.empresa;
+    document.getElementById('oportunidade').value  = vaga.oportunidade;
+    document.getElementById('tipo').value = vaga.tipo;
+    document.getElementById('salario').value = vaga.salario;
 
 }
 
+
+// recebe um id e faz a chamada para a api e retorna o objeto encontrado
+const getById = async (id) => {
+    const response = await fetch(`${apiUrl}/vagas/${id}`)
+    const vaga = await response.json();
+    return vaga
+}
+
+
+const deleteVaga = () => {
+    
+}
+
+// limpa os campos do formulario (inputs)
 const limpaCampos = () => {
     document.getElementById('empresa').value = '';
     document.getElementById('oportunidade').value = '';
