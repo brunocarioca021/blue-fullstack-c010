@@ -43,8 +43,7 @@ const putVaga = (req, res) => {
 // excluir um item da lista e devolver a msg de exclusao para o front-end
 const deleteVaga = (req, res) => {
     const vagaExcluida = vagasService.deleteVaga(req.params.id);
-    res.send(`A vaga ${vagaExcluida.oportunidade} 
-    da empresa ${vagaExcluida.empresa} foi excluida com sucesso`);
+    res.send({message: `A vaga ${vagaExcluida.oportunidade} da empresa ${vagaExcluida.empresa} foi excluida com sucesso`});
 }
 
 
