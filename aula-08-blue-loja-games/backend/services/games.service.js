@@ -20,8 +20,21 @@ const createGame = async (game) => {
   return await Game.create(game)
 }
 
+// recebe um Objeto(JSON) e um id e altera os valores de um game no banco de dados
+const editGame = async (id, game) => {
+  return await Game.findByIdAndUpdate(id, game);
+}
+
+// recebe um id e exclui um jogo do banco de dados de acordo com esse id
+const deleteGame = async (id) => {
+  return await Game.findByIdAndDelete(id);
+}
+
+
 module.exports = {
   getGames,
   getGameById,
   createGame,
+  editGame,
+  deleteGame
 };
