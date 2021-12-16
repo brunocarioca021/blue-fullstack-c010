@@ -1,0 +1,22 @@
+.menu {
+  background: #2950b9;
+  color: #FFF;
+  padding: 1rem 0;
+  display: flex;
+  justify-content: center;
+}
+
+ul {
+  padding: 0px;
+  min-width: 1200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+ul li {
+  list-style: none;
+  color: #FFF;
+  font-size: 1.5rem;
+}

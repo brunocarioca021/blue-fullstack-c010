@@ -1,0 +1,32 @@
+.btn {
+  background: #FFF;
+  border: 1px solid #000;
+  border-radius: 10px;
+  outline: none;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+/* Estilos de variacao dos botoes */
+
+.sucesso {
+  background: green;
+  color: #FFF;
+}
+
+.erro {
+  background: red;
+  color: #FFF;
+}
+
+.primario {
+  background: blue;
+  color: #FFF;
+}
+
+.alerta {
+  background: yellow;
+  color: #000;
+}

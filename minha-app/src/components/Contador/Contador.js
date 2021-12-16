@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Button from '../Button/Button';
 
 function Contador(props) {
  const [contador, setContador] = useState(0);
@@ -12,7 +13,7 @@ function Contador(props) {
   return(
     <div>
       <p>contador {titulo}: {contador}</p>
-      <button onClick={incrementa}>Incrementar</button>
+      <Button text="incrementa" estilo="primario" onclick={incrementa}/>
     </div>
   )
 }
