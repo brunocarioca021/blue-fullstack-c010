@@ -3,5 +3,13 @@
 }
 
 .banner {
-  width: 20%;
+  width: 200px;
+  height: auto;
+}
+ul {
+  display: flex;
+  flex-wrap: wrap;
+}
+ul li {
+  padding-right: 2rem;
 }

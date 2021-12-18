@@ -18,7 +18,7 @@ app.use("/games", gamesRouter);
 Conn();
 
 // defino a porta e iniclizo o servidor
-const port = 3000;
+const port = 3001;
 app.listen(port, () => {
   console.log(`Servidor inicializado na porta ${port}`);
 })
