@@ -58,6 +58,7 @@ function App() {
       <Button text="Cancelar"estilo="sucesso"/>
       <Button text="Click" estilo="alerta"/>
       <Button text="Enviar" estilo="sucesso"/>
+      <Button text="meu botao" estilo="alerta"/>
       <div>
         <form onSubmit={handleSubmit}>
           <input type="text" id="filme" name="filme" placeholder="digite o nome do filme"/>

@@ -18,6 +18,7 @@ const ListGames = () => {
     const response = await fetch('http://localhost:3001/games');
     // gamesApi = dados que recebe da api
     const gamesApi = await response.json();
+    console.log('RESPOSTA DA API', gamesApi);
     // atualizar o meu estado em memoria com os games para que possa atualizar o DOM.
     setGames(gamesApi);
   }
@@ -28,7 +29,7 @@ const ListGames = () => {
 
   return(
     <div>
-      <p>list games</p>
+      <p className='text-center h5'>LISTAGEM DE JOGOS</p>
       <div className="row row-cols-1 row-cols-md-3 g-4">
         {
           games.map((game) => (
