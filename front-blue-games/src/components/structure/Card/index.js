@@ -8,6 +8,7 @@ const Card = (props) => {
         <div className="card-body">
           <h5 className="card-title">Nome: {game.nome}</h5>
           <p className="card-text">Valor: {game.valor}</p>
+          <p className="card-text">Nota: {game.nota}</p>
         </div>
       </div>
     </Link>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
+import Api from '../../api/api';
 
 const View = () => {
   // incializo o estado game para poder fazer atualizacao no dom
@@ -15,7 +16,7 @@ const View = () => {
   
   const getGameById = async () => {
     // realiza requisicao GET para api
-    const request = await fetch(`http://localhost:3001/games/${id}`);
+    const request = await Api.fetchGetById(id);
     // retorna o jogo encontrado e salva na variavel game
     const game = await request.json();
 
@@ -37,7 +38,7 @@ const View = () => {
             <p>Valor: {game.valor}</p>
             <p>Ano Lancamento: {game.anoLancamento}</p>
             <div className='btn-group my-3 w-100'>
-              <button className='btn btn-info text-white'>Editar</button>
+              <Link to={`/edit/${game._id}`} className='btn btn-info text-white'>Editar</Link>
               <button className='btn btn-danger'>Excluir</button>
             </div>
           </div>

@@ -13,6 +13,7 @@ const gamesModel = new mongoose.Schema({
   nota: { type: Number, required: true},
   plataforma: { type: String, required: true},
   valor: {type: String, required: true},
+  genero: { type: String, required: true},
   anoLancamento: {type: String, required: true},
   dataCriacao: { type: Date, default: Date.now }
 })

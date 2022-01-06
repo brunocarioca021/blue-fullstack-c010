@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Card from '../Card';
+import Api from '../../../api/api';
+
 // faz uma requisicao para a API http://localhost:3001/games e vai listar na tela
 // em cards a lista de jogos
 const ListGames = () => {
@@ -15,7 +17,7 @@ const ListGames = () => {
 
   const getGames = async () => {
     // faz a requisao http GET atraves do fetch API do javascript.
-    const response = await fetch('http://localhost:3001/games');
+    const response = await Api.fetchGetAll();
     // gamesApi = dados que recebe da api
     const gamesApi = await response.json();
     console.log('RESPOSTA DA API', gamesApi);
