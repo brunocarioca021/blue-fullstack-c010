@@ -10,6 +10,20 @@ const Api = {
         "Content-Type": "application/json"
       })
     })
+  },
+  fetchPut: (game, id) => {
+    return fetch(`${Api.apiUrl}/edit/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(game),
+      headers: new Headers({
+        "Content-Type": "application/json"
+      })
+    })
+  },
+  fetchDelete: (id) => {
+    return fetch(`${Api.apiUrl}/delete/${id}`, {
+      method: 'DELETE'
+    })
   }
 }
 

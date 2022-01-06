@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Api from "../../api/api";
 
 const Edit = () => {
+  const navigate = useNavigate();
+
   // declaro o estado inicial do game
   const [game, setGame] = useState({
     nome: '',
@@ -41,6 +43,17 @@ const Edit = () => {
     setGame(gameEdit);
   };
 
+  const handleSubmit = async (evento) => {
+    evento.preventDefault();
+
+    const response = await Api.fetchPut(game, id);
+    const data = await response.json();
+    alert(data.message);
+
+    navigate(`/view/${id}`);
+
+  }
+
   return (
     <div className="container">
       <div className="card mt-4">
@@ -48,7 +61,7 @@ const Edit = () => {
           <h3 className="m-3">Ediçao do Game</h3>
         </div>
         <div className="card-body">
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="row mb-4">
               <div className="col-4">
                 <div className="form-group">

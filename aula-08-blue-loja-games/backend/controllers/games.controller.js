@@ -56,7 +56,7 @@ const editGame = async (req, res) => {
 
   // chamo a funcao do servico passando o id para ser editado e o objeto com os novos valores
   await gamesService.editGame(id, gameEdit)
-  .then(() => res.send({message: 'Filme Editado com sucesso'}))
+  .then(() => res.send({message: 'Game Editado com sucesso'}))
   .catch(err => res.status(500).send({message: `Erro no servidor: ${err}`}))
 }
 
